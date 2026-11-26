@@ -1,0 +1,29 @@
+{
+  "slow": {
+    "ts": "2026-11-26T08:27:51.765839+00:00",
+    "level": "INFO",
+    "service": "observable-agent",
+    "instance": "07a3a38c43db",
+    "event": "llm_call",
+    "trace_id": "3815ac88954c76c33e184d321332c130",
+    "span_id": "059b6dbde25bb83d",
+    "request_id": "ef44cd287917",
+    "model": "mock-llm-small",
+    "agent_version": "v2",
+    "input_tokens": 76,
+    "output_tokens": 39,
+    "cost_usd": 3.5e-05,
+    "llm_ms": 1693.1
+  },
+  "error": {
+    "ts": "2026-11-26T08:26:08.503189+00:00",
+    "level": "INFO",
+    "service": "observable-agent",
+    "instance": "07a3a38c43db",
+    "event": "llm_error",
+    "trace_id": "2f24bdd1a7d54c33b33a966608d27e92",
+    "span_id": "11901a4abcc95526",
+    "request_id": "43246a34c2dc",
+    "error": "Upstream LLM error: 503 Service Unavailable (mock)"
+  }
+}

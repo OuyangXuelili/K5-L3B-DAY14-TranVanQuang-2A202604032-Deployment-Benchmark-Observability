@@ -1,0 +1,12 @@
+{
+  "started_at": "2026-11-26T15:11:07+0700",
+  "requests_per_run": 300,
+  "mock_error_rate": 0.01,
+  "concurrency_slow_rate": 0.03,
+  "slow_comparison_concurrency": 20,
+  "other_day14_stacks": "stopped",
+  "load_generator": "Windows Python 3.13.14",
+  "agent": "Python 3.11.18 in Docker, 1 worker, no CPU quota",
+  "builds_running": false,
+  "finished_at": "2026-11-26T15:14:47+0700"
+}

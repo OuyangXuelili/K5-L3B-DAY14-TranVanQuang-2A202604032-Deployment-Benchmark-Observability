@@ -1,0 +1,27 @@
+http_requests_total{method="GET",route="unmatched",status="404"} 2.0
+http_request_duration_seconds_bucket{le="0.05",method="GET",route="unmatched"} 2.0
+http_request_duration_seconds_bucket{le="0.1",method="GET",route="unmatched"} 2.0
+http_request_duration_seconds_bucket{le="0.2",method="GET",route="unmatched"} 2.0
+http_request_duration_seconds_bucket{le="0.3",method="GET",route="unmatched"} 2.0
+http_request_duration_seconds_bucket{le="0.5",method="GET",route="unmatched"} 2.0
+http_request_duration_seconds_bucket{le="0.75",method="GET",route="unmatched"} 2.0
+http_request_duration_seconds_bucket{le="1.0",method="GET",route="unmatched"} 2.0
+http_request_duration_seconds_bucket{le="1.5",method="GET",route="unmatched"} 2.0
+http_request_duration_seconds_bucket{le="2.0",method="GET",route="unmatched"} 2.0
+http_request_duration_seconds_bucket{le="3.0",method="GET",route="unmatched"} 2.0
+http_request_duration_seconds_bucket{le="5.0",method="GET",route="unmatched"} 2.0
+http_request_duration_seconds_bucket{le="+Inf",method="GET",route="unmatched"} 2.0
+http_request_duration_seconds_count{method="GET",route="unmatched"} 2.0
+http_request_duration_seconds_sum{method="GET",route="unmatched"} 0.0024761529998613696
+# HELP agent_question_length_chars Độ dài câu hỏi (ký tự)
+# TYPE agent_question_length_chars histogram
+agent_question_length_chars_bucket{le="20.0"} 1.0
+agent_question_length_chars_bucket{le="50.0"} 244.0
+agent_question_length_chars_bucket{le="100.0"} 301.0
+agent_question_length_chars_bucket{le="200.0"} 301.0
+agent_question_length_chars_bucket{le="500.0"} 301.0
+agent_question_length_chars_bucket{le="1000.0"} 301.0
+agent_question_length_chars_bucket{le="2000.0"} 301.0
+agent_question_length_chars_bucket{le="+Inf"} 301.0
+agent_question_length_chars_count 301.0
+agent_question_length_chars_sum 12048.0

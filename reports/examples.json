@@ -1,0 +1,114 @@
+{
+  "part1": {
+    "method": "POST /ask?question=Hello",
+    "status": 200,
+    "body": {
+      "answer": "Agent đang hoạt động tốt! (mock response) Hỏi thêm câu hỏi đi nhé."
+    }
+  },
+  "part4_api_key": {
+    "missing": {
+      "status": 401,
+      "headers": {
+        "date": "Thu, 26 Nov 2026 07:48:36 GMT",
+        "server": "uvicorn",
+        "content-length": "67",
+        "content-type": "application/json",
+        "connection": "close"
+      },
+      "body": {
+        "detail": "Missing API key. Include header: X-API-Key: <your-key>"
+      }
+    },
+    "valid": {
+      "status": 200,
+      "headers": {
+        "date": "Thu, 26 Nov 2026 07:48:36 GMT",
+        "server": "uvicorn",
+        "content-length": "122",
+        "content-type": "application/json",
+        "connection": "close"
+      },
+      "body": {
+        "question": "Hello",
+        "answer": "Tôi là AI agent được deploy lên cloud. Câu hỏi của bạn đã được nhận."
+      }
+    }
+  },
+  "part4_jwt": {
+    "login_status": 200,
+    "token": "[REDACTED]",
+    "request_statuses": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      429,
+      429,
+      429,
+      429,
+      429,
+      429,
+      429,
+      429,
+      429,
+      429
+    ],
+    "examples": {
+      "200": {
+        "status": 200,
+        "headers": {
+          "date": "Thu, 26 Nov 2026 07:49:07 GMT",
+          "server": "uvicorn",
+          "content-length": "187",
+          "content-type": "application/json",
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-xss-protection": "1; mode=block",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "connection": "close"
+        },
+        "body": {
+          "question": "Test 0",
+          "answer": "Tôi là AI agent được deploy lên cloud. Câu hỏi của bạn đã được nhận.",
+          "usage": {
+            "requests_remaining": 9,
+            "budget_remaining_usd": 1.9e-05
+          }
+        }
+      },
+      "429": {
+        "status": 429,
+        "headers": {
+          "date": "Thu, 26 Nov 2026 07:49:08 GMT",
+          "server": "uvicorn",
+          "x-ratelimit-limit": "10",
+          "x-ratelimit-remaining": "0",
+          "x-ratelimit-reset": "1795679409",
+          "retry-after": "58",
+          "content-length": "98",
+          "content-type": "application/json",
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-xss-protection": "1; mode=block",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "connection": "close"
+        },
+        "body": {
+          "detail": {
+            "error": "Rate limit exceeded",
+            "limit": 10,
+            "window_seconds": 60,
+            "retry_after_seconds": 58
+          }
+        }
+      }
+    }
+  }
+}

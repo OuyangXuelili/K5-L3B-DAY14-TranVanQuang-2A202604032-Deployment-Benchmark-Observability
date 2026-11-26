@@ -1,5 +1,25 @@
 # Day 14 — Deployment, Benchmark & Observability
 
+## Bài làm
+
+- [Mission Answers](MISSION_ANSWERS.md): Part 1–6, output checker đầy đủ và AI log theo yêu cầu.
+- [Deployment](DEPLOYMENT.md): cấu hình Render Free và trạng thái URL public.
+- [Benchmark Report](BENCHMARK_REPORT.md): số đo, eval, scaling và bằng chứng observability.
+- [Reports](reports/): JSON/HTTP/checker; [Locust CSV](benchmark-results/): số đo scaling.
+
+Part 6 đã đạt **PASS 12/12 (43/43 checks)**; eval v2 sau chỉnh KB đạt **23/23**, không regression. Đã có bốn ảnh giám sát local; phần triển khai Render và ba ảnh deploy chưa hoàn tất, xem trạng thái trong các báo cáo.
+
+Chạy agent Part 6 bằng Docker Compose từ `06-lab-complete/`: nếu chưa có `.env` thì copy `.env.example` thành `.env`, tự đặt `AGENT_API_KEY`, rồi chạy `docker compose -p k5-day14-agent up -d --build`. Khi dùng file `.env.example`, cổng host là `18006` để tránh chiếm cổng 8000 của dự án khác. `PORT=8000` là cổng bên trong container; `HOST_PORT` chỉ cấu hình ánh xạ của Compose. Giữ `.env` ngoài Git.
+
+Trên Windows, nếu Compose báo build context không tồn tại khi đường dẫn chứa dấu tổ hợp, dùng junction có đường dẫn ASCII. Từ gốc repo, chạy PowerShell dưới đây; junction trỏ tới cùng checkout, không sao chép source hoặc tạo worktree:
+
+```powershell
+$day14RepoPath = (Get-Location).Path
+$day14AliasPath = Join-Path $env:TEMP ('day14-workspace-' + [guid]::NewGuid().ToString('N'))
+New-Item -ItemType Junction -Path $day14AliasPath -Target $day14RepoPath
+docker compose --project-directory "$day14AliasPath/06-lab-complete" -f "$day14AliasPath/06-lab-complete/docker-compose.yml" -p k5-day14-agent up -d --build
+```
+
 > Đưa agent lên cloud, đo xem nó nhanh và đúng tới đâu, rồi giám sát nó khi chạy thật.
 
 > **AICB-P1 · VinUniversity 2026**  

@@ -1,0 +1,6 @@
+{
+  "command": "run_eval.py --url http://localhost:8001 --min-accuracy 0.85 --baseline reports/eval_v2.json",
+  "exit_code": 1,
+  "expected_exit_code": 1,
+  "meaning": "Fail required CI check when quality threshold or regression gate fails"
+}

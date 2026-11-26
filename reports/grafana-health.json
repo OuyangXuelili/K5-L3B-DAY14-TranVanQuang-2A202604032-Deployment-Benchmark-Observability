@@ -1,0 +1,11 @@
+{
+  "health": {
+    "database": "ok",
+    "version": "13.2.4",
+    "commit": "0e79aef9d91abf3bdadae9af15763029072fb45b"
+  },
+  "dashboard_uid": "day14-agent-overview",
+  "dashboard_title": "Day 14 — AI Agent Overview",
+  "dashboard_url": "http://127.0.0.1:3000/d/day14-agent-overview/day-14-e28094-ai-agent-overview",
+  "screenshot_captured": true
+}

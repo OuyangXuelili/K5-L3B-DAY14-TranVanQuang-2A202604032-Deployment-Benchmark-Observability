@@ -1,0 +1,90 @@
+{
+  "base": "http://127.0.0.1:18006",
+  "tests": {
+    "health": {
+      "status": 200,
+      "body": {
+        "status": "ok"
+      },
+      "expected": 200
+    },
+    "ready": {
+      "status": 200,
+      "body": {
+        "status": "ready",
+        "redis": true
+      },
+      "expected": 200
+    },
+    "missing_key": {
+      "status": 401,
+      "body": {
+        "detail": "Invalid or missing API key"
+      },
+      "expected": 401
+    },
+    "wrong_key": {
+      "status": 401,
+      "body": {
+        "detail": "Invalid or missing API key"
+      },
+      "expected": 401
+    },
+    "unicode_wrong_key": {
+      "status": 401,
+      "body": {
+        "detail": "Invalid or missing API key"
+      },
+      "expected": 401
+    },
+    "authorized": {
+      "status": 200,
+      "body": {
+        "question": "Hello",
+        "answer": "Agent đang hoạt động tốt! (mock response) Hỏi thêm câu hỏi đi nhé.",
+        "input_tokens": 1,
+        "output_tokens": 16,
+        "cost_usd": 9.75e-06,
+        "model": "mock-llm"
+      },
+      "expected": 200
+    },
+    "blank_question": {
+      "status": 422,
+      "body": {
+        "detail": [
+          {
+            "type": "value_error",
+            "loc": [
+              "body",
+              "question"
+            ],
+            "msg": "Value error, question must contain text",
+            "input": "   ",
+            "ctx": {
+              "error": {}
+            }
+          }
+        ]
+      },
+      "expected": 422
+    },
+    "missing_question": {
+      "status": 422,
+      "body": {
+        "detail": [
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "question"
+            ],
+            "msg": "Field required",
+            "input": {}
+          }
+        ]
+      },
+      "expected": 422
+    }
+  }
+}

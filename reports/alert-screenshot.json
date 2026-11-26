@@ -1,0 +1,30 @@
+{
+  "screenshot": "screenshots/prometheus-alert-firing.png",
+  "captured_at": "2026-11-26T09:00:16.444000+00:00",
+  "prometheus_firing_at_capture": [
+    {
+      "metric": {
+        "__name__": "ALERTS",
+        "alertname": "AgentHighLatencyP95",
+        "alertstate": "firing",
+        "severity": "warning"
+      },
+      "value": [
+        1795683616.444,
+        "1"
+      ]
+    },
+    {
+      "metric": {
+        "__name__": "ALERTS",
+        "alertname": "AgentHighErrorRate",
+        "alertstate": "firing",
+        "severity": "critical"
+      },
+      "value": [
+        1795683616.444,
+        "1"
+      ]
+    }
+  ]
+}

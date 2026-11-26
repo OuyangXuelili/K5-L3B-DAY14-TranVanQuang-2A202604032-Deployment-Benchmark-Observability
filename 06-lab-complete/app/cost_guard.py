@@ -1,21 +1,28 @@
-"""
-Cost guard (tiêu chí 8).
+"""Track mock token charges in Redis using UTC accounting periods."""
+from datetime import datetime, timezone
+from fastapi import HTTPException
+from .config import settings
+from .redis_client import r
 
-Yêu cầu:
-  • Cộng dồn chi phí LLM (tính theo token) vào Redis
-  • Tổng chi phí vượt DAILY_BUDGET_USD (hoặc MONTHLY_BUDGET_USD) → HTTP 402
-"""
-
-# Giá USD / 1K tokens (tham khảo gpt-4o-mini)
 PRICE_INPUT_PER_1K = 0.00015
 PRICE_OUTPUT_PER_1K = 0.0006
 
+def _keys():
+    now = datetime.now(timezone.utc)
+    return f"day14:cost:daily:{now:%Y-%m-%d}", f"day14:cost:monthly:{now:%Y-%m}"
 
 def check_budget() -> None:
-    """Gọi TRƯỚC khi gọi LLM. Hết budget → raise HTTPException(status_code=402)."""
-    raise NotImplementedError("TODO: check_budget")
-
+    daily, monthly = r.mget(_keys())
+    if float(daily or 0) >= settings.daily_budget_usd or float(monthly or 0) >= settings.monthly_budget_usd:
+        raise HTTPException(status_code=402, detail="Token budget exhausted")
 
 def record_cost(input_tokens: int, output_tokens: int) -> float:
-    """Gọi SAU khi gọi LLM. Cộng chi phí của request vào tổng, trả về chi phí request."""
-    raise NotImplementedError("TODO: record_cost")
+    cost = (input_tokens * PRICE_INPUT_PER_1K + output_tokens * PRICE_OUTPUT_PER_1K) / 1000
+    daily, monthly = _keys()
+    with r.pipeline(transaction=True) as pipe:
+        pipe.incrbyfloat(daily, cost)
+        pipe.expire(daily, 172800)
+        pipe.incrbyfloat(monthly, cost)
+        pipe.expire(monthly, 5356800)
+        pipe.execute()
+    return cost

@@ -1,0 +1,52 @@
+{
+  "purpose": "Replay A/D for actual Prometheus screenshot; primary measured detection times remain in observability.json",
+  "requested_at": "2026-11-26T08:55:53.025902+00:00",
+  "before": [],
+  "latest_alerts": [
+    {
+      "labels": {
+        "alertname": "AgentHighErrorRate",
+        "severity": "critical"
+      },
+      "annotations": {
+        "description": "Error rate hiện tại: 20.74% (SLO: < 5%)",
+        "summary": "Error rate /ask vượt 5%"
+      },
+      "state": "firing",
+      "activeAt": "2026-11-26T08:56:47.401817116Z",
+      "value": "2.0738374012549954e-01"
+    },
+    {
+      "labels": {
+        "alertname": "AgentHighLatencyP95",
+        "severity": "warning"
+      },
+      "annotations": {
+        "description": "p95 hiện tại: 1.562s (SLO: < 1s)",
+        "summary": "p95 latency /ask vượt 1 giây"
+      },
+      "state": "pending",
+      "activeAt": "2026-11-26T08:57:07.401817116Z",
+      "value": "1.5620638828016975e+00"
+    },
+    {
+      "labels": {
+        "alertname": "AgentInstanceDown",
+        "instance": "172.20.0.5:8000",
+        "job": "agent",
+        "severity": "critical"
+      },
+      "annotations": {
+        "description": "Prometheus không gọi được /metrics của 172.20.0.5:8000 trong 30s",
+        "summary": "Instance agent 172.20.0.5:8000 không scrape được"
+      },
+      "state": "firing",
+      "activeAt": "2026-11-26T08:58:02.401817116Z",
+      "value": "0e+00"
+    }
+  ],
+  "paused_container": "k5-day14-observability-agent-3",
+  "pause_requested_at": "2026-11-26T08:57:56.260352+00:00",
+  "screenshot_ready_at": "2026-11-26T08:58:37.589461+00:00",
+  "unpaused_at": "2026-11-26T08:59:38.138943+00:00"
+}

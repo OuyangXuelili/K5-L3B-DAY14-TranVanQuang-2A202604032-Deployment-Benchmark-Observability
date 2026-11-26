@@ -1,0 +1,9 @@
+{
+  "schema_url": "https://render.com/schema/render.yaml.json",
+  "blueprint": "06-lab-complete/render.yaml",
+  "schema_valid": true,
+  "plans": [
+    "free",
+    "free"
+  ]
+}

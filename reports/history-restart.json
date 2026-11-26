@@ -1,0 +1,12 @@
+{
+  "restarted_container": "k5-day14-scaling-agent-3",
+  "count_before_restart": 4,
+  "count_after_restart": 4,
+  "count_after_next_request": 6,
+  "messages_preserved_exactly": true,
+  "served_by": [
+    "instance-e496d2",
+    "instance-cc96a2",
+    "instance-e496d2"
+  ]
+}

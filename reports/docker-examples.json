@@ -1,0 +1,57 @@
+{
+  "measured_at": "2026-11-26T14:57:22+0700",
+  "images": [
+    {
+      "tag": "day14-agent:develop",
+      "id": "sha256:70df466175ddadf27eee22fe7841d92f30e8b029c37ea290a5397a9bdc944420",
+      "size_bytes": 426319536,
+      "size_MiB": 406.57
+    },
+    {
+      "tag": "day14-agent:advanced",
+      "id": "sha256:91638426232b7b794679e1f902b16b20aaf455f75da0a9707f3e4c6ae23cf32b",
+      "size_bytes": 57409708,
+      "size_MiB": 54.75
+    },
+    {
+      "tag": "day14-agent:final",
+      "id": "sha256:a9e1ea53f7d9d9b9205e1b25203b363bef6f9fe4e2e5e6bbec549b1d927d95e8",
+      "size_bytes": 58842442,
+      "size_MiB": 56.12
+    }
+  ],
+  "docker_images_display": [
+    "day14-agent:advanced 240MB",
+    "day14-agent:final 249MB",
+    "day14-agent:develop 1.67GB"
+  ],
+  "basic_health": {
+    "status": 200,
+    "body": {
+      "status": "ok",
+      "uptime_seconds": 158.9,
+      "container": true
+    }
+  },
+  "basic_ask": {
+    "status": 200,
+    "body": {
+      "answer": "Tôi là AI agent được deploy lên cloud. Câu hỏi của bạn đã được nhận."
+    }
+  },
+  "nginx_health": {
+    "status": 200,
+    "body": {
+      "status": "ok",
+      "uptime_seconds": 160.7,
+      "version": "2.0.0",
+      "timestamp": "2026-11-26T07:57:53.399564"
+    }
+  },
+  "nginx_ask": {
+    "status": 200,
+    "body": {
+      "answer": "Tôi là AI agent được deploy lên cloud. Câu hỏi của bạn đã được nhận."
+    }
+  }
+}

@@ -1,0 +1,566 @@
+{
+  "runs": {
+    "scale_1": {
+      "requested_at": "2026-11-26T08:19:43.107236+00:00",
+      "finished_at": "2026-11-26T08:22:03.539962+00:00",
+      "exit_code": 1,
+      "users": 100,
+      "spawn_rate": 10,
+      "duration_requested_seconds": 120,
+      "snapshot": {
+        "observed_at": "2026-11-26T08:21:13.165651+00:00",
+        "p95_seconds": {
+          "query": "histogram_quantile(0.95,sum by (le) (rate(http_request_duration_seconds_bucket{job=\"agent\",route=\"/ask\"}[1m])))",
+          "result": [
+            {
+              "metric": {},
+              "value": [
+                1795681273.183,
+                "4.608837378221381"
+              ]
+            }
+          ]
+        },
+        "avg_seconds": {
+          "query": "sum(rate(http_request_duration_seconds_sum{job=\"agent\",route=\"/ask\"}[1m])) / sum(rate(http_request_duration_seconds_count{job=\"agent\",route=\"/ask\"}[1m]))",
+          "result": [
+            {
+              "metric": {},
+              "value": [
+                1795681273.206,
+                "1.3046742177113257"
+              ]
+            }
+          ]
+        },
+        "error_rate": {
+          "query": "sum(rate(http_requests_total{job=\"agent\",route=\"/ask\",status=~\"5..\"}[1m])) / sum(rate(http_requests_total{job=\"agent\",route=\"/ask\"}[1m]))",
+          "result": [
+            {
+              "metric": {},
+              "value": [
+                1795681273.213,
+                "0.006679014382954714"
+              ]
+            }
+          ]
+        },
+        "rps_per_instance": {
+          "query": "sum by (instance) (rate(http_requests_total{job=\"agent\",route=\"/ask\"}[1m]))",
+          "result": [
+            {
+              "metric": {
+                "instance": "172.20.0.4:8000"
+              },
+              "value": [
+                1795681273.244,
+                "24.525108972474328"
+              ]
+            }
+          ]
+        },
+        "tokens_per_second": {
+          "query": "sum by (type) (rate(llm_tokens_total{job=\"agent\"}[1m]))",
+          "result": [
+            {
+              "metric": {
+                "type": "input"
+              },
+              "value": [
+                1795681273.276,
+                "1999.0290756271945"
+              ]
+            },
+            {
+              "metric": {
+                "type": "output"
+              },
+              "value": [
+                1795681273.276,
+                "1092.4669098428756"
+              ]
+            }
+          ]
+        },
+        "targets_up": {
+          "query": "up{job=\"agent\"}",
+          "result": [
+            {
+              "metric": {
+                "__name__": "up",
+                "instance": "172.20.0.4:8000",
+                "job": "agent"
+              },
+              "value": [
+                1795681273.283,
+                "1"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "scale_3": {
+      "requested_at": "2026-11-26T08:22:20.037812+00:00",
+      "finished_at": "2026-11-26T08:24:25.148070+00:00",
+      "exit_code": 1,
+      "users": 100,
+      "spawn_rate": 10,
+      "duration_requested_seconds": 120,
+      "snapshot": {
+        "observed_at": "2026-11-26T08:23:50.061137+00:00",
+        "p95_seconds": {
+          "query": "histogram_quantile(0.95,sum by (le) (rate(http_request_duration_seconds_bucket{job=\"agent\",route=\"/ask\"}[1m])))",
+          "result": [
+            {
+              "metric": {},
+              "value": [
+                1795681430.107,
+                "1.3352071191094963"
+              ]
+            }
+          ]
+        },
+        "avg_seconds": {
+          "query": "sum(rate(http_request_duration_seconds_sum{job=\"agent\",route=\"/ask\"}[1m])) / sum(rate(http_request_duration_seconds_count{job=\"agent\",route=\"/ask\"}[1m]))",
+          "result": [
+            {
+              "metric": {},
+              "value": [
+                1795681430.146,
+                "0.34081316178572235"
+              ]
+            }
+          ]
+        },
+        "error_rate": {
+          "query": "sum(rate(http_requests_total{job=\"agent\",route=\"/ask\",status=~\"5..\"}[1m])) / sum(rate(http_requests_total{job=\"agent\",route=\"/ask\"}[1m]))",
+          "result": [
+            {
+              "metric": {},
+              "value": [
+                1795681430.191,
+                "0.00964099016784176"
+              ]
+            }
+          ]
+        },
+        "rps_per_instance": {
+          "query": "sum by (instance) (rate(http_requests_total{job=\"agent\",route=\"/ask\"}[1m]))",
+          "result": [
+            {
+              "metric": {
+                "instance": "172.20.0.4:8000"
+              },
+              "value": [
+                1795681430.235,
+                "18.039971630689774"
+              ]
+            },
+            {
+              "metric": {
+                "instance": "172.20.0.6:8000"
+              },
+              "value": [
+                1795681430.235,
+                "18.56903826567729"
+              ]
+            },
+            {
+              "metric": {
+                "instance": "172.20.0.7:8000"
+              },
+              "value": [
+                1795681430.235,
+                "18.0958443211785"
+              ]
+            }
+          ]
+        },
+        "tokens_per_second": {
+          "query": "sum by (type) (rate(llm_tokens_total{job=\"agent\"}[1m]))",
+          "result": [
+            {
+              "metric": {
+                "type": "input"
+              },
+              "value": [
+                1795681430.314,
+                "4386.917858552844"
+              ]
+            },
+            {
+              "metric": {
+                "type": "output"
+              },
+              "value": [
+                1795681430.314,
+                "2383.4982354521203"
+              ]
+            }
+          ]
+        },
+        "targets_up": {
+          "query": "up{job=\"agent\"}",
+          "result": [
+            {
+              "metric": {
+                "__name__": "up",
+                "instance": "172.20.0.4:8000",
+                "job": "agent"
+              },
+              "value": [
+                1795681430.355,
+                "1"
+              ]
+            },
+            {
+              "metric": {
+                "__name__": "up",
+                "instance": "172.20.0.6:8000",
+                "job": "agent"
+              },
+              "value": [
+                1795681430.355,
+                "1"
+              ]
+            },
+            {
+              "metric": {
+                "__name__": "up",
+                "instance": "172.20.0.7:8000",
+                "job": "agent"
+              },
+              "value": [
+                1795681430.355,
+                "1"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "changes": {
+    "A": {
+      "requested_at": "2026-11-26T08:25:40.357977+00:00",
+      "error_rate": 0.2,
+      "slow_rate": 0.03,
+      "ready_at": "2026-11-26T08:26:01.477321+00:00"
+    },
+    "D": {
+      "requested_at": "2026-11-26T08:28:50.050522+00:00",
+      "container": "k5-day14-observability-agent-2",
+      "operation": "docker pause",
+      "unpaused_at": "2026-11-26T08:29:31.249119+00:00"
+    },
+    "D_failed_attempt": {
+      "requested_at": "2026-11-26T08:27:21.939999+00:00",
+      "container": "k5-day14-observability-agent-1",
+      "operation": "docker pause",
+      "result": "Container name no longer existed after scaling; selected a currently running instance instead."
+    }
+  },
+  "alert_events": [
+    {
+      "name": "LLMCostBurnRateHigh",
+      "observed_at": "2026-11-26T08:26:01.530390+00:00",
+      "active_at": "2026-11-26T08:22:37.571501534Z",
+      "value": "4.053489267883185e+00"
+    },
+    {
+      "name": "AgentHighErrorRate",
+      "observed_at": "2026-11-26T08:27:21.937983+00:00",
+      "active_at": "2026-11-26T08:26:12.401817116Z",
+      "value": "2.0136139010546866e-01"
+    },
+    {
+      "name": "AgentInstanceDown",
+      "observed_at": "2026-11-26T08:29:31.031343+00:00",
+      "active_at": "2026-11-26T08:28:52.401817116Z",
+      "value": "0e+00"
+    }
+  ],
+  "grafana_during_benchmark": "stopped to fit host RAM; Prometheus and Jaeger enabled",
+  "started_at": "2026-11-26T08:18:41.076671+00:00",
+  "before_faults": {
+    "observed_at": "2026-11-26T08:24:25.156216+00:00",
+    "p95_seconds": {
+      "query": "histogram_quantile(0.95,sum by (le) (rate(http_request_duration_seconds_bucket{job=\"agent\",route=\"/ask\"}[1m])))",
+      "result": [
+        {
+          "metric": {},
+          "value": [
+            1795681465.184,
+            "2.570801559619932"
+          ]
+        }
+      ]
+    },
+    "avg_seconds": {
+      "query": "sum(rate(http_request_duration_seconds_sum{job=\"agent\",route=\"/ask\"}[1m])) / sum(rate(http_request_duration_seconds_count{job=\"agent\",route=\"/ask\"}[1m]))",
+      "result": [
+        {
+          "metric": {},
+          "value": [
+            1795681465.236,
+            "0.6836903575668589"
+          ]
+        }
+      ]
+    },
+    "error_rate": {
+      "query": "sum(rate(http_requests_total{job=\"agent\",route=\"/ask\",status=~\"5..\"}[1m])) / sum(rate(http_requests_total{job=\"agent\",route=\"/ask\"}[1m]))",
+      "result": [
+        {
+          "metric": {},
+          "value": [
+            1795681465.255,
+            "0.011240802401940291"
+          ]
+        }
+      ]
+    },
+    "rps_per_instance": {
+      "query": "sum by (instance) (rate(http_requests_total{job=\"agent\",route=\"/ask\"}[1m]))",
+      "result": [
+        {
+          "metric": {
+            "instance": "172.20.0.4:8000"
+          },
+          "value": [
+            1795681465.29,
+            "14.531235791579522"
+          ]
+        },
+        {
+          "metric": {
+            "instance": "172.20.0.6:8000"
+          },
+          "value": [
+            1795681465.29,
+            "14.03993743862074"
+          ]
+        },
+        {
+          "metric": {
+            "instance": "172.20.0.7:8000"
+          },
+          "value": [
+            1795681465.29,
+            "13.49458943348186"
+          ]
+        }
+      ]
+    },
+    "tokens_per_second": {
+      "query": "sum by (type) (rate(llm_tokens_total{job=\"agent\"}[1m]))",
+      "result": [
+        {
+          "metric": {
+            "type": "input"
+          },
+          "value": [
+            1795681465.309,
+            "3376.664193153256"
+          ]
+        },
+        {
+          "metric": {
+            "type": "output"
+          },
+          "value": [
+            1795681465.309,
+            "1838.235723950479"
+          ]
+        }
+      ]
+    },
+    "targets_up": {
+      "query": "up{job=\"agent\"}",
+      "result": [
+        {
+          "metric": {
+            "__name__": "up",
+            "instance": "172.20.0.4:8000",
+            "job": "agent"
+          },
+          "value": [
+            1795681465.347,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "up",
+            "instance": "172.20.0.6:8000",
+            "job": "agent"
+          },
+          "value": [
+            1795681465.347,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "up",
+            "instance": "172.20.0.7:8000",
+            "job": "agent"
+          },
+          "value": [
+            1795681465.347,
+            "1"
+          ]
+        }
+      ]
+    }
+  },
+  "simultaneous_firing": {
+    "observed_at": "2026-11-26T08:29:31.034359+00:00",
+    "alerts": [
+      {
+        "labels": {
+          "alertname": "AgentHighErrorRate",
+          "severity": "critical"
+        },
+        "annotations": {
+          "description": "Error rate hiện tại: 18.64% (SLO: < 5%)",
+          "summary": "Error rate /ask vượt 5%"
+        },
+        "state": "firing",
+        "activeAt": "2026-11-26T08:26:12.401817116Z",
+        "value": "1.8635092196775804e-01"
+      },
+      {
+        "labels": {
+          "alertname": "AgentInstanceDown",
+          "instance": "172.20.0.4:8000",
+          "job": "agent",
+          "severity": "critical"
+        },
+        "annotations": {
+          "description": "Prometheus không gọi được /metrics của 172.20.0.4:8000 trong 30s",
+          "summary": "Instance agent 172.20.0.4:8000 không scrape được"
+        },
+        "state": "firing",
+        "activeAt": "2026-11-26T08:28:52.401817116Z",
+        "value": "0e+00"
+      }
+    ]
+  },
+  "nginx_metrics_status": 404,
+  "finished_at": "2026-11-26T08:30:10.837613+00:00",
+  "two_instance_snapshot": {
+    "query_at": "2026-11-26T08:28:45.050522+00:00",
+    "note": "Historical 1m window immediately before pause; 30 Locust users, error injection 0.2",
+    "p95_seconds": {
+      "query": "histogram_quantile(0.95,sum by (le) (rate(http_request_duration_seconds_bucket{job=\"agent\",route=\"/ask\"}[1m])))",
+      "result": [
+        {
+          "metric": {},
+          "value": [
+            1795681725.051,
+            "0.2948322147651006"
+          ]
+        }
+      ]
+    },
+    "avg_seconds": {
+      "query": "sum(rate(http_request_duration_seconds_sum{job=\"agent\",route=\"/ask\"}[1m])) / sum(rate(http_request_duration_seconds_count{job=\"agent\",route=\"/ask\"}[1m]))",
+      "result": [
+        {
+          "metric": {},
+          "value": [
+            1795681725.051,
+            "0.22621758813424617"
+          ]
+        }
+      ]
+    },
+    "error_rate": {
+      "query": "sum(rate(http_requests_total{job=\"agent\",route=\"/ask\",status=~\"5..\"}[1m])) / sum(rate(http_requests_total{job=\"agent\",route=\"/ask\"}[1m]))",
+      "result": [
+        {
+          "metric": {},
+          "value": [
+            1795681725.051,
+            "0.19844357976653698"
+          ]
+        }
+      ]
+    },
+    "rps_per_instance": {
+      "query": "sum by (instance) (rate(http_requests_total{job=\"agent\",route=\"/ask\"}[1m]))",
+      "result": [
+        {
+          "metric": {
+            "instance": "172.20.0.4:8000"
+          },
+          "value": [
+            1795681725.051,
+            "9.328629618853652"
+          ]
+        },
+        {
+          "metric": {
+            "instance": "172.20.0.6:8000"
+          },
+          "value": [
+            1795681725.051,
+            "9.364998545242944"
+          ]
+        }
+      ]
+    },
+    "tokens_per_second": {
+      "query": "sum by (type) (rate(llm_tokens_total{job=\"agent\"}[1m]))",
+      "result": [
+        {
+          "metric": {
+            "type": "input"
+          },
+          "value": [
+            1795681725.051,
+            "1232.3428862379983"
+          ]
+        },
+        {
+          "metric": {
+            "type": "output"
+          },
+          "value": [
+            1795681725.051,
+            "676.0983415769567"
+          ]
+        }
+      ]
+    },
+    "targets_up": {
+      "query": "up{job=\"agent\"}",
+      "result": [
+        {
+          "metric": {
+            "__name__": "up",
+            "instance": "172.20.0.4:8000",
+            "job": "agent"
+          },
+          "value": [
+            1795681725.051,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "up",
+            "instance": "172.20.0.6:8000",
+            "job": "agent"
+          },
+          "value": [
+            1795681725.051,
+            "1"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "tracked_and_untracked_nonignored_files_scanned": 198,
+  "secret_findings": [],
+  "local_env_ignored": true,
+  "env_files_in_history": [],
+  "protected_files_unchanged": true,
+  "protected_files": [
+    "06-lab-complete/check_production_ready.py",
+    "06-lab-complete/benchmark-observability/develop/eval/golden_dataset.jsonl",
+    "RULES.md"
+  ],
+  "required_screenshots_missing": [
+    "dashboard.png",
+    "running.png",
+    "test.png"
+  ],
+  "cloud_url_verified": false,
+  "ready_to_submit": false
+}

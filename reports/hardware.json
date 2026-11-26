@@ -1,0 +1,18 @@
+{
+  "host_cpu": "Intel Core i7-1165G7 @ 2.80GHz",
+  "physical_cores": 4,
+  "logical_processors": 8,
+  "host_visible_memory_KiB": 8054288,
+  "docker_memory_bytes": 3935961088,
+  "docker_cpus": 8,
+  "initial_memory_pressure_free_host_KiB": 208104,
+  "sources": [
+    "Get-CimInstance Win32_Processor",
+    "Get-CimInstance Win32_OperatingSystem",
+    "docker info --format MemTotal,NCPU"
+  ],
+  "agent_limits_per_instance": {
+    "cpus": 0.5,
+    "memory": "256M"
+  }
+}
