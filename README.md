@@ -7,7 +7,9 @@
 - [Benchmark Report](BENCHMARK_REPORT.md): số đo, eval, scaling và bằng chứng observability.
 - [Reports](reports/): JSON/HTTP/checker; [Locust CSV](benchmark-results/): số đo scaling.
 
-Part 6 đã đạt **PASS 12/12 (43/43 checks)**; eval v2 sau chỉnh KB đạt **23/23**, không regression. Đã có bốn ảnh giám sát local; phần triển khai Render và ba ảnh deploy chưa hoàn tất, xem trạng thái trong các báo cáo.
+Part 6 đã đạt **PASS 12/12 (43/43 checks)**; eval v2 sau chỉnh KB đạt **23/23**, không regression. Đã có đủ JSON/CSV, bảy ảnh minh chứng và triển khai **Render Free**. Bốn phép thử public đạt **200/200/401/200**; xem [Deployment](DEPLOYMENT.md) để kiểm tra bằng chứng và giới hạn gói miễn phí.
+
+**API public:** https://day14-agent-r4n7.onrender.com/docs · **Health:** https://day14-agent-r4n7.onrender.com/health. Render Free có thể cần 50 giây hoặc hơn để khởi động sau thời gian không có tải.
 
 Chạy agent Part 6 bằng Docker Compose từ `06-lab-complete/`: nếu chưa có `.env` thì copy `.env.example` thành `.env`, tự đặt `AGENT_API_KEY`, rồi chạy `docker compose -p k5-day14-agent up -d --build`. Khi dùng file `.env.example`, cổng host là `18006` để tránh chiếm cổng 8000 của dự án khác. `PORT=8000` là cổng bên trong container; `HOST_PORT` chỉ cấu hình ánh xạ của Compose. Giữ `.env` ngoài Git.
 

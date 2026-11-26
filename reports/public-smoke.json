@@ -1,0 +1,68 @@
+{
+  "base_url": "https://day14-agent-r4n7.onrender.com",
+  "platform": "Render",
+  "plan": "free",
+  "git_commit": "b806a95459ae2d0fa1779557710c3637fcd7939c",
+  "runner": "curl.exe",
+  "all_passed": true,
+  "tests": [
+    {
+      "name": "health",
+      "method": "GET",
+      "path": "/health",
+      "api_key_sent": false,
+      "status": 200,
+      "expected_status": 200,
+      "duration_s": 0.427296,
+      "response": {
+        "status": "ok"
+      },
+      "checked_at": "2026-11-26T11:02:23.532281+00:00"
+    },
+    {
+      "name": "ready",
+      "method": "GET",
+      "path": "/ready",
+      "api_key_sent": false,
+      "status": 200,
+      "expected_status": 200,
+      "duration_s": 0.228724,
+      "response": {
+        "status": "ready",
+        "redis": true
+      },
+      "checked_at": "2026-11-26T11:02:23.803511+00:00"
+    },
+    {
+      "name": "missing_key",
+      "method": "POST",
+      "path": "/ask",
+      "api_key_sent": false,
+      "status": 401,
+      "expected_status": 401,
+      "duration_s": 0.207423,
+      "response": {
+        "detail": "Invalid or missing API key"
+      },
+      "checked_at": "2026-11-26T11:02:24.041318+00:00"
+    },
+    {
+      "name": "authorized",
+      "method": "POST",
+      "path": "/ask",
+      "api_key_sent": true,
+      "status": 200,
+      "expected_status": 200,
+      "duration_s": 0.9198,
+      "response": {
+        "question": "Hello",
+        "answer": "Agent đang hoạt động tốt! (mock response) Hỏi thêm câu hỏi đi nhé.",
+        "input_tokens": 1,
+        "output_tokens": 16,
+        "cost_usd": 9.75e-06,
+        "model": "mock-llm"
+      },
+      "checked_at": "2026-11-26T11:02:24.995933+00:00"
+    }
+  ]
+}

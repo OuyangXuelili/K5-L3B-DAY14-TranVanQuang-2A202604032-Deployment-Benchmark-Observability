@@ -1,0 +1,6 @@
+Public URL: https://day14-agent-r4n7.onrender.com
+Client: curl.exe (secret supplied from ignored local .env; never printed)
+GET /health | API key: absent | HTTP 200 | expected 200
+GET /ready | API key: absent | HTTP 200 | expected 200
+POST /ask | API key: absent | HTTP 401 | expected 401
+POST /ask | API key: present, redacted | HTTP 200 | expected 200

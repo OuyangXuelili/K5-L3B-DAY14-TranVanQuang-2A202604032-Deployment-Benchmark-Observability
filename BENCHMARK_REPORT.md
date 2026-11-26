@@ -6,7 +6,7 @@
 
 **Môi trường:** Windows, Intel Core i7-1165G7 (4 nhân/8 luồng), RAM danh nghĩa 8 GB. Docker Desktop Linux dùng 8 CPU logic, giới hạn RAM 3.935.961.088 bytes (khoảng 3,67 GiB). Agent production bị giới hạn 0,5 CPU và 256 MB mỗi instance, một Uvicorn worker/container. Xem [hardware.json](reports/hardware.json).
 
-**Trạng thái:** đã có JSON/CSV, bốn ảnh giao diện Part 7, hai alert cùng firing và trace khớp log. Còn URL Render và ba ảnh deploy; hồ sơ chưa đủ để nộp.
+**Trạng thái:** đã có JSON/CSV, đủ bảy ảnh minh chứng, hai alert cùng firing và trace khớp log. Agent Part 6 đã Live trên Render Free, bốn phép thử public đạt 200/200/401/200; xem [DEPLOYMENT.md](DEPLOYMENT.md). Các số đo tải dưới đây được thực hiện local.
 
 ## 1. SLO của agent
 
@@ -156,7 +156,7 @@ Từ 1 lên 3 instance, RPS tăng **1.35 lần**, p95 giảm **54.39%**. Có c�
 
 Nguồn: [scale_1_stats.csv](benchmark-results/scale_1_stats.csv), [scale_3_stats.csv](benchmark-results/scale_3_stats.csv), kèm failures/exceptions/history CSV nguyên bản. Locust trả exit code 1 khi có request thất bại; file số đo vẫn được giữ và báo cáo đúng. `-t 2m` là thời gian tải được yêu cầu; thời gian chạy lệnh ngoài còn gồm khởi động và dừng container.
 
-## 6. Kết luận và phần còn thiếu
+## 6. Kết luận và giới hạn
 
 1. Tăng concurrency hoặc replica cần đo lại: p95/p99 và lỗi bộc lộ hàng đợi mà average che đi; máy phát tải và máy chủ dùng chung tài nguyên là một giới hạn của phép đo này.
 2. Chất lượng và độ sẵn sàng khác nhau: v1 HTTP 200 vẫn chỉ đúng 1/23 câu. Eval phát hiện regression mà các alert hạ tầng không thấy.
@@ -164,4 +164,4 @@ Nguồn: [scale_1_stats.csv](benchmark-results/scale_1_stats.csv), [scale_3_stat
 
 Nếu vận hành thật, bổ sung độ dài queue, CPU throttling/event-loop lag, token và cost thực từ provider, số request bị rate/budget guard chặn, quality theo phiên bản và synthetic checks cho public URL. Benchmark mock không chứng minh độ trễ hoặc giá của LLM thật.
 
-Đã chụp đủ bốn ảnh Part 7 trong giao diện thật. Triển khai Render và ba ảnh deploy được theo dõi trong [DEPLOYMENT.md](DEPLOYMENT.md); chưa đánh dấu phần cloud hoàn tất.
+Đã chụp đủ bốn ảnh Part 7 trong giao diện thật và ba ảnh deploy. Agent Part 6 chạy tại https://day14-agent-r4n7.onrender.com; bằng chứng kiểm tra public và giới hạn Render Free trong [DEPLOYMENT.md](DEPLOYMENT.md). Các SLO trượt ở tải cao được giữ nguyên trong báo cáo; hoàn tất hồ sơ không có nghĩa mọi cấu hình tải đều đạt SLO.

@@ -2,9 +2,14 @@
 
 ## Trạng thái
 
-Nền tảng đã chọn: **Render Free**, gồm web service Docker và Render Key Value Free trong cùng region Singapore. **Chưa có URL public đã xác minh**. Tab Render hiện đã vào Dashboard. Code local chưa được commit/push trong đợt này; cần đưa bản code đã kiểm tra lên main trước khi triển khai và xác minh service public.
+Agent Part 6 đã triển khai trên **Render Free** cùng **Render Key Value Free**, region Singapore. Dashboard báo **Live** với bản code [`b806a95`](https://github.com/OuyangXuelili/K5-L3B-DAY14-TranVanQuang-2A202604032-Deployment-Benchmark-Observability/commit/b806a95459ae2d0fa1779557710c3637fcd7939c). Các cập nhật hồ sơ sau commit này không thay đổi code chạy trên cloud.
 
-Không sử dụng API LLM trả phí. Giá token trong ứng dụng là số mô phỏng của mock.
+- Public URL: **https://day14-agent-r4n7.onrender.com**
+- Health: https://day14-agent-r4n7.onrender.com/health
+- Readiness: https://day14-agent-r4n7.onrender.com/ready
+- Swagger: https://day14-agent-r4n7.onrender.com/docs
+
+Không sử dụng API LLM trả phí. Giá token trong ứng dụng là số mô phỏng của mock. Web service và Key Value đều dùng gói Free.
 
 ## Cấu hình triển khai
 
@@ -13,7 +18,8 @@ Không sử dụng API LLM trả phí. Giá token trong ứng dụng là số m�
 - Root Directory: `06-lab-complete`.
 - Dockerfile: `./Dockerfile`; build context: `.`.
 - Web service: `day14-agent-r4n7`, plan `free`.
-- Key Value: `day14-state-r4n7`, plan `free`, không mở truy cập Redis từ Internet.
+- Key Value: `day14-state-r4n7`, plan `free`, 25 MB, tối đa 50 kết nối. Runtime hiển thị Valkey 8.1.10, tương thích giao thức Redis mà app sử dụng.
+- Redis kết nối qua mạng nội bộ; danh sách cho phép truy cập ngoài rỗng, Internet không truy cập được Key Value.
 - Health check: `/health`.
 
 | Biến | Cách đặt |
@@ -27,13 +33,23 @@ Không sử dụng API LLM trả phí. Giá token trong ứng dụng là số m�
 | `MONTHLY_BUDGET_USD` | `10` |
 | `LOG_LEVEL` | `INFO` |
 
-Gói free có thể cold start sau thời gian không có tải. Key Value Free không bảo đảm lưu bền khi restart; reset state cũng reset bộ đếm rate/budget. Cấu hình này phục vụ lab, chưa đủ để quản lý ngân sách LLM thật.
+## Kết quả xác minh public
 
-## Bốn lệnh xác minh sau deploy
+Đã chạy bằng **curl.exe** ngày **26/11/2026 lúc 18:02 (GMT+7)**, tương ứng timestamp UTC trong [public-smoke.json](reports/public-smoke.json). Bốn phép thử đều đạt:
 
-Đặt `BASE` thành URL Render thực tế và lấy `AGENT_API_KEY` từ kho biến môi trường của service. Các lệnh chỉ in status, không in key:
+| Request | API key | HTTP thực tế | Kết quả |
+|---|---|---:|---|
+| `GET /health` | Không gửi | 200 | `status: ok` |
+| `GET /ready` | Không gửi | 200 | `status: ready`, `redis: true` |
+| `POST /ask` | Không gửi | 401 | Từ chối truy cập |
+| `POST /ask` | Hợp lệ | 200 | Trả câu trả lời mock và usage |
+
+Output rút gọn: [public-curl.txt](reports/public-curl.txt). API key được đọc từ `.env` local đã bỏ qua bởi Git và truyền cho curl qua stdin; không ghi giá trị vào báo cáo hoặc ảnh.
+
+Để kiểm tra lại trong Bash, đặt `AGENT_API_KEY` trong môi trường shell từ kho secret của service, rồi chạy:
 
 ```bash
+BASE=https://day14-agent-r4n7.onrender.com
 curl -sS -o /dev/null -w '%{http_code}\n' "$BASE/health"
 curl -sS -o /dev/null -w '%{http_code}\n' "$BASE/ready"
 curl -sS -o /dev/null -w '%{http_code}\n' -X POST "$BASE/ask" \
@@ -43,10 +59,18 @@ curl -sS -o /dev/null -w '%{http_code}\n' -X POST "$BASE/ask" \
   -d '{"question":"Hello"}'
 ```
 
-Kỳ vọng theo thứ tự: **200, 200, 401, 200**. Chưa ghi các mã này là kết quả cloud khi chưa chạy thật.
+Mã kỳ vọng theo thứ tự: **200, 200, 401, 200**. PowerShell dùng `curl.exe` thay cho alias `curl`.
 
-## Bằng chứng deploy còn cần bổ sung
+## Ảnh minh chứng
 
-`screenshots/dashboard.png`, `screenshots/running.png`, `screenshots/test.png` phải được chụp sau khi Render có service chạy và bốn lệnh trên đã được xác minh. Không dùng ảnh local thay cho ảnh deploy public.
+- [dashboard.png](screenshots/dashboard.png): trang Render hiển thị service **Free**, trạng thái **Live**, commit và URL public.
+- [running.png](screenshots/running.png): Swagger trên URL public đã thực thi `/ready`, nhận **200** và `redis: true`.
+- [test.png](screenshots/test.png): ảnh trang tổng hợp dữ liệu curl đã ghi trong `reports/public-smoke.json`, hiển thị đủ bốn phép thử. Trang chỉ trình bày kết quả đã chạy; không tự gửi request trình duyệt và không chứa secret.
 
-Blueprint đã được kiểm tra với JSON Schema chính thức của Render, hợp lệ và cả hai service dùng plan `free`: [deploy-config-validation.json](reports/deploy-config-validation.json). Đây là kiểm tra cấu hình, chưa phải bằng chứng đã deploy.
+Blueprint cũng đã được kiểm tra với JSON Schema chính thức của Render: [deploy-config-validation.json](reports/deploy-config-validation.json).
+
+## Giới hạn vận hành
+
+Render Free có thể tạm dừng web khi không có tải; request đầu tiên có thể mất **50 giây hoặc hơn** để khởi động lại. Key Value Free không bật persistence và dùng eviction `allkeys-lru`; restart hoặc thiếu bộ nhớ có thể làm mất state, gồm bộ đếm rate limit/budget. Cấu hình này phục vụ lab với mock LLM; trước khi dùng ngân sách LLM thật cần state lưu bền và cơ chế reservation atomic như phân tích trong Mission Answers.
+
+Service được tạo qua Blueprint từ URL repo public. Khi thay đổi code, kiểm tra deployment mới đã Live; nếu không có auto-deploy, dùng **Manual Deploy → Deploy latest commit**. Các phép đo tải và observability trong Benchmark Report được chạy local; không coi chúng là benchmark của Render Free.

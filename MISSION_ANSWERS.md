@@ -72,7 +72,9 @@ flowchart LR
 
 ## Part 3 — Cloud deployment
 
-Chọn **Render Free**, triển khai chính agent trong `06-lab-complete/` và Render Key Value dùng giao thức Redis. Trạng thái triển khai, URL và bốn phép kiểm tra được ghi trong [DEPLOYMENT.md](DEPLOYMENT.md). Chưa coi file cấu hình deploy là bằng chứng đã có URL chạy thực tế.
+Đã triển khai chính agent trong `06-lab-complete/` trên **Render Free** cùng Render Key Value Free dùng giao thức Redis. Service báo **Live** với bản code `b806a95`. URL public: **https://day14-agent-r4n7.onrender.com**; giao diện API: https://day14-agent-r4n7.onrender.com/docs.
+
+Ngày 26/11/2026 lúc 18:02 (GMT+7), bốn phép kiểm tra bằng curl.exe lần lượt trả **200** (`GET /health`), **200** (`GET /ready`, `redis: true`), **401** (`POST /ask` không key) và **200** (`POST /ask` có key hợp lệ). Kết quả thật: [public-smoke.json](reports/public-smoke.json), [public-curl.txt](reports/public-curl.txt). Cấu hình môi trường, ba ảnh deploy và giới hạn cold start/state của gói Free được ghi trong [DEPLOYMENT.md](DEPLOYMENT.md).
 
 `railway.toml` mô tả builder Docker, health check, chính sách restart cho Railway; Redis thường phải thêm vào project và nối bằng biến môi trường. `render.yaml` là Blueprint khai báo cả web service, gói free, thư mục gốc, Redis và quan hệ `fromService`. `generateValue` tạo API key trên nền tảng; source không có giá trị key. Blueprint path cần chọn `06-lab-complete/render.yaml`, service root directory là `06-lab-complete`.
 
@@ -199,6 +201,7 @@ Tích hợp Compose agent + Redis cũng đã kiểm tra riêng: `/health` và `/
 | Đọc repo, triển khai các TODO Part 6 | Cấu hình env, auth, Redis, rate limit, budget, JSON logging, Docker/Compose và deploy config | Chạy checker nguyên bản với Redis, HTTP, SIGTERM và Docker; lưu output thật, giữ các lỗi còn chưa xử lý trong trạng thái công việc |
 | Chạy và giải thích các ví dụ Part 1–5 | Đối chiếu chữ ký endpoint thực tế, tài khoản demo, rate limit và state dùng chung | HTTP thật, hai Docker image và stack Nginx; test stateless 3 instance; bằng chứng trong reports |
 | Làm benchmark và sửa knowledge base | Bổ sung kiến thức JWT và HPA; histogram độ dài câu hỏi ở develop/production | Eval trên 23 câu của đề, giữ nguyên dataset/evaluator; load test và quan sát metric |
+| Hoàn thiện triển khai Render Free | Tạo web service và Key Value từ Blueprint; giữ giá trị key ngoài Git | Dashboard Live, curl public 200/200/401/200, Swagger `/ready` 200 có Redis; lưu ba ảnh thực tế |
 | Soạn hồ sơ bàn giao | Tổng hợp lệnh, bằng chứng và giới hạn của số đo | Đối chiếu lại các bảng với JSON/CSV và ảnh thực tế trước khi nộp |
 
 Các kiểm tra trong phiên do công cụ chạy tự động. Chưa có bằng chứng học viên tự kiểm tra thủ công hoặc tự giải thích code; không ghi nhận việc đó là đã thực hiện. Học viên cần đọc lại source và kết quả để có thể giải thích khi Lab Coach yêu cầu.

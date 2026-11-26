@@ -1,19 +1,27 @@
 {
-  "tracked_and_untracked_nonignored_files_scanned": 198,
+  "tracked_and_untracked_nonignored_files_scanned": 203,
   "secret_findings": [],
+  "git_text_history_scanned": true,
   "local_env_ignored": true,
+  "local_and_render_secret_values_checked": true,
   "env_files_in_history": [],
+  "protected_files_baseline": "83e677f",
   "protected_files_unchanged": true,
   "protected_files": [
     "06-lab-complete/check_production_ready.py",
     "06-lab-complete/benchmark-observability/develop/eval/golden_dataset.jsonl",
-    "RULES.md"
+    "06-lab-complete/benchmark-observability/develop/eval/run_eval.py",
+    "RULES.md",
+    "SUBMISSION.md",
+    "RUBRIC.md",
+    "CHECKPOINTS.md"
   ],
-  "required_screenshots_missing": [
-    "dashboard.png",
-    "running.png",
-    "test.png"
-  ],
-  "cloud_url_verified": false,
-  "ready_to_submit": false
+  "required_screenshots_missing": [],
+  "required_reports_missing": [],
+  "required_csv_missing": [],
+  "checker_12_of_12_and_43_of_43": true,
+  "eval_23_of_23_without_regression": true,
+  "cloud_url_verified": true,
+  "ready_to_submit": true,
+  "scope": "Submission artifact and recorded evidence checks; no guarantee of grading outcome or independent manual review."
 }
